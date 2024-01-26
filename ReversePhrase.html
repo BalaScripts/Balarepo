@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assigment - Reverse Phrase</title>
+  </head>
+  <body>
+    <!-- User Inputs -->
+    <h3>Reverse Phrase</h3>
+    <input type="text" id="phraseInput" placeholder="Enter Here..." />
+    <button onclick="reversePhrase()">Submit</button>
+
+    <!-- Reverse Phrase Script -->
+    <script>
+      function reversePhrase() {
+        const inputElement = document.getElementById("phraseInput");
+        const userInput = inputElement.value;
+
+        ReversePhrase(userInput)
+          .then((result) => {
+            console.log("Reversed Phrase:", result);
+          })
+          .catch((error) => {
+            console.error("Error:", error.message);
+          });
+      }
+
+      function ReversePhrase(userInput) {
+        return new Promise((resolve, reject) => {
+          if (!userInput.trim()) {
+            reject(new Error("Invalid input. Please enter valid data"));
+          }
+
+          setTimeout(() => {
+            // <!-- Reverse the entered phrase -->
+
+            const reversedPhrase = userInput.split("").reverse().join("");
+
+            // Resolve with the reversed phrase
+            resolve(reversedPhrase);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

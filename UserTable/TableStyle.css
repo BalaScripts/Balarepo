@@ -28,40 +28,28 @@
   }
   
   
-  .tbody input {
-    width: 100%;
-    padding: 6px;
-    box-sizing: border-box;
-  }
-  
-  
   .tbody button {
     cursor: pointer;
     padding: 8px;
     margin-right: 5px;
   }
   
-  .tbody button:disabled {
-    cursor: not-allowed;
+  .tbody button.edit-btn {
+    color: cornflowerblue;
   }
   
   
   .tbody button.save-btn {
-    background-color: #4caf50;
-    color: white;
-    border-radius: 10%;
+    color: cornflowerblue;
   }
   
   .tbody button.cancel-btn {
-    background-color: #ff9800;
-    color: white;
-    border-radius: 10%;
+    color: tomato;
+    
   }
   
- 
   .tbody button.delete-btn {
-    background-color: #f44336;
-    color: white;
+    color: #f44336;
   }
   
 .td {

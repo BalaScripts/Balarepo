@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./TableStyle.css";
+import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -56,39 +61,39 @@ const UserTable = () => {
   }, []);
 
   return (
-    <div>
-      <table className="table">
-        <thead className="thead">
-          <tr className="tr">
-            <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Website</th>
-            <th>Company</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody className="tbody">
+    <TableContainer>
+      <Table className="table">
+        <TableHead className="thead">
+          <TableRow className="tr">
+            <TableCell>ID</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Username</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Website</TableCell>
+            <TableCell>Company</TableCell>
+            <TableCell>Action</TableCell>
+            <TableCell>Delete</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody className="tbody">
           {users.map((user, index) => (
-            <tr key={index}>
-              <td className="td">{user.id}</td>
-              <td className="td">
+            <TableRow key={index}>
+              <TableCell className="td">{user.id}</TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.name}
                     onChange={(e) => setEdit({ ...edit, name: e.target.value })}
                   />
                 ) : (
                   user.name
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.username}
                     onChange={(e) =>
                       setEdit({ ...edit, username: e.target.value })
@@ -97,10 +102,10 @@ const UserTable = () => {
                 ) : (
                   user.username
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.email}
                     onChange={(e) =>
                       setEdit({ ...edit, email: e.target.value })
@@ -109,10 +114,10 @@ const UserTable = () => {
                 ) : (
                   user.email
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.address.city}
                     onChange={(e) =>
                       handleFieldChange("address", {
@@ -124,10 +129,10 @@ const UserTable = () => {
                 ) : (
                   user.address.city
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.phone}
                     onChange={(e) =>
                       setEdit({ ...edit, phone: e.target.value })
@@ -136,10 +141,10 @@ const UserTable = () => {
                 ) : (
                   user.phone
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.website}
                     onChange={(e) =>
                       setEdit({ ...edit, website: e.target.value })
@@ -148,10 +153,10 @@ const UserTable = () => {
                 ) : (
                   user.website
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
-                  <input
+                  <TextField size="small"
                     value={edit.company.name}
                     onChange={(e) =>
                       handleFieldChange("company", {
@@ -163,25 +168,25 @@ const UserTable = () => {
                 ) : (
                   user.company.name
                 )}
-              </td>
-              <td className="td">
+              </TableCell>
+              <TableCell className="td">
                 {edit && edit.id === user.id ? (
                   <>
-                    <button className="save-btn" onClick={handleSave}>Save</button>
-                    <button className="cancel-btn" onClick={handleCancel}>Cancel</button>
+                    <IconButton className="save-btn" onClick={handleSave}><SaveIcon /></IconButton>
+                    <IconButton className="cancel-btn" onClick={handleCancel}><CloseIcon /></IconButton>
                   </>
                 ) : (
-                  <button onClick={() => handleEdit(user)}>Edit</button>
+                  <IconButton className="edit-btn" onClick={() => handleEdit(user)}><EditIcon /></IconButton>
                 )}
-              </td>
-              <td className="td">
-                <button onClick={() => handleDelete(user.id)}>Delete</button>
-              </td>
-            </tr>
+              </TableCell>
+              <TableCell className="td">
+                <IconButton className="delete-btn" onClick={() => handleDelete(user.id)}><DeleteIcon /></IconButton>
+              </TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
-    </div>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
